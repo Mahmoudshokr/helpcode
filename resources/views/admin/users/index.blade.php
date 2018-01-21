@@ -6,7 +6,6 @@
 @section('content')
 
     <h1>Users</h1>
-
     <table class="table table-striped">
       <thead>
         <tr>
@@ -26,13 +25,13 @@
       <tbody>
         <tr>
           <th scope="row">{{$user->id}}</th>
-          <td>{{$user->name}}</td>
+          <td><a href="{{route('adminuser.edit',$user->id)}}">{{$user->name}}</a></td>
           <td>{{$user->email}}</td>
           <td>{{$user->role->name}}</td>
           <td>{{$user->active == 1 ? 'Active':'Not active'}}</td>
           <td>{{$user->created_at->diffForHumans()}}</td>
           <td>{{$user->updated_at->diffForHumans()}}</td>
-          <td><img height="50" width="50" src="images/{{$user->photo ? $user->photo->path:'No photo'}}" alt=""></td>
+          <td><img height="50" width="50" src="images/{{$user->photo ? $user->photo->path:'default.jpg'}}" class="img-rounded img-responsive" alt=""></td>
           <td>{{$user->photo ? $user->photo->size.' KB':' 0 KB'}}</td>
         </tr>
       </tbody>
