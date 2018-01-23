@@ -15,7 +15,7 @@
         {!! Form::model($user,['method'=>'PUT','action'=>['AdminUserController@update',$user->id],'files'=>true]) !!}
 
         {!! Form::token() !!}
-        <div class="form-group">
+
             {!! Form::label('name','name:'); !!}
             {!! Form::text('name',null,['class'=>'form-control','placeholder'=>'']) !!}<br>
 
@@ -34,10 +34,15 @@
             {!! Form::label('role_id','Role:') !!}
             {!! Form::select('role_id',['choose options']+ $roles ,null,['class'=>'form-control','placeholder'=>'']) !!}<br>
 
-            {!! Form::submit('Edit user',['class'=>'btn btn-primary']) !!}
-        </div>
+            {!! Form::submit('Edit user',['class'=>'btn btn-primary col-sm-3']) !!}
+
         {!! Form::close() !!}
-        </div>
+
+        {!! Form::open(['align'=>'center','method'=>'DELETE','action'=>['AdminUserController@destroy',$user->id]]) !!}
+            {!! Form::token() !!}
+            {!! Form::submit('Delete user',['class'=>'btn btn-danger col-sm-3']) !!}
+            {!! Form::close() !!}
+
     </div>
 
     <div class="row">

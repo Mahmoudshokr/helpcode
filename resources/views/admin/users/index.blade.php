@@ -5,6 +5,10 @@
 
 @section('content')
 
+@if(Session::has('deleteflash_id'))
+    <p class="bg-info">{{session('deleteflash_id')}}</p>
+@endif
+
     <h1>Users</h1>
     <table class="table table-striped">
       <thead>

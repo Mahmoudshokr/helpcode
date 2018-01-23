@@ -15,7 +15,7 @@ class AddRoleIdToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->integer('role_id')->nullable()->unsigned();
+            $table->integer('role_id')->default(2);
         });
     }
 
