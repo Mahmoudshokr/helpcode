@@ -28,7 +28,7 @@
     <![endif]-->
 
 
-
+@yield('dropzone')
 
 </head>
 
@@ -129,7 +129,7 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="{{'admin'}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
 
                     <li>
@@ -151,11 +151,18 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/posts">All Posts</a>
+                                <a href="{{route('adminpost.index')}}">All Posts</a>
                             </li>
 
                             <li>
-                                <a href="/posts/create">Create Post</a>
+                                <a href="{{route('adminpost.create')}}">Create Post</a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('admincomments.index')}}">All Comments</a>
+                            </li>
+                            <li>
+                                <a href="{{route('admincommentreplies.index')}}">All Replies</a>
                             </li>
 
                         </ul>
@@ -167,11 +174,11 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i>Categories<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/categories">All Categories</a>
+                                <a href="{{route('admincategories.index')}}">All Categories</a>
                             </li>
 
                             <li>
-                                <a href="/categories/create">Create Category</a>
+                                <a href="{{route('admincategories.create')}}">Create Category</a>
                             </li>
 
                         </ul>
@@ -183,11 +190,11 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i>Media<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/media">All Media</a>
+                                <a href="{{route('adminmedia.index')}}">All Media</a>
                             </li>
 
                             <li>
-                                <a href="">Upload Media</a>
+                                <a href="{{route('adminmedia.create')}}">Upload Media</a>
                             </li>
 
                         </ul>

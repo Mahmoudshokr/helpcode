@@ -32,7 +32,15 @@ Route::group(['middleware'=>'admin'],function (){
         return view('admin/index');
     });
 
+    Route::get('/blogpost/{id}',['as'=>'blog.post','uses'=>'PostCommentsController@post']);
+    Route::resource('/admincomments','PostCommentsController');
+    Route::resource('/admincommentreplies','CommentRepliesController');
+
+
     Route::resource('/adminuser','AdminUserController');
+    Route::resource('/adminpost','AdminPostController');
+    Route::resource('/admincategories','AdminCategoriesController');
+    Route::resource('/adminmedia','AdminMediaController');
 
 });
 

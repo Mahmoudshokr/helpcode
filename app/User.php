@@ -27,7 +27,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
    /* public function role(){
-        return $this->belongsToMany('App\Role');
+        return $this->hasMany('App\Role'); ->كده تشتفل
     }*/
     public function role(){
         return $this->belongsTo('App\Role');
@@ -44,6 +44,9 @@ class User extends Authenticatable
         }
         return false;
 
+    }
+    public function post(){
+        return $this->hasMany('App\Post');
     }
 
 }
