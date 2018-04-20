@@ -1,13 +1,41 @@
 
 @extends('layouts.admin')
 
+@section('script')
+  <script>
+      $(document).ready(function(){
+          $('#options').click(function () {
+             if(this.checked){
+                 $('.checkbox').each(function () {
+                     this.checked=true
+                 })
+             }else{
+                 $('.checkbox').each(function () {
+                   this.checked=false
+                 })
+             }
+          });
+        });
+  </script>
+@stop
+
 @section('content')
   <p class="bg-info"> {{session('deletemedia_id')}}</p>
     <h1>Media</h1>
 
+  <form action="deletebycheck" name="deleteselected" method="POST" class="form-inline">
+    {{csrf_field()}}
+    {{method_field('delete')}}
+
+    <select name="checkboxarray" id="chs">
+      <option value="delete">Delete</option>
+    </select>
+    <input type="submit" class="btn btn-primary">
+
     <table class="table table-striped">
       <thead>
         <tr>
+          <th><input type="checkbox" id="options"></th>
           <th scope="col">id</th>
           <th scope="col">name</th>
           <th scope="col">size</th>
@@ -21,6 +49,7 @@
       @if($medias)
           @foreach($medias as $media)
         <tr>
+          <td><input type="checkbox" name="checkboxarray[]" value={{$media->id}} class="checkbox"></td>
           <th scope="row">{{$media->id}}</th>
           <td>{{$media->path}}</td>
           <td>{{$media->size ? $media->size : 'unknown'}}</td>
@@ -40,5 +69,11 @@
         @endif
       </tbody>
     </table>
+  </form>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-5">
+      {{$medias->render()}}
+    </div>
+  </div>
 
 @stop

@@ -88,12 +88,14 @@
             <div class="well">
                 <h4>Blog Search</h4>
                 <div class="input-group">
-                    <input type="text" class="form-control">
+                    <form action="http://localhost/helpcode/public/result" method="GET">
+                    <input type="text" name="query" class="form-control" required>
                     <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
+                            <button class="btn btn-default" type="submit">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </span>
+                    </form>
                 </div>
                 <!-- /.input-group -->
             </div>
@@ -102,30 +104,14 @@
             <div class="well">
                 <h4>Blog Categories</h4>
                 <div class="row">
+                    @foreach($cats=\App\Category::all() as $cat)
                     <div class="col-lg-6">
                         <ul class="list-unstyled">
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
+                            <li><a href="{{route('postbycat.show',$cat->id)}}">{{$cat->name}}</a>
                             </li>
                         </ul>
                     </div>
-                    <div class="col-lg-6">
-                        <ul class="list-unstyled">
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                        </ul>
-                    </div>
+                    @endforeach
                 </div>
                 <!-- /.row -->
             </div>
@@ -159,6 +145,8 @@
 <!-- jQuery -->
 
 <script src="{{asset('js/libs.js')}}"></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad61f4db1b7a264"></script>
 
 
 @yield('scripts')

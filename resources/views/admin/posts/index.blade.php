@@ -3,9 +3,13 @@
 @section('content')
     <p class="bg-info">{{session('deletepost_id')}}</p>
     <h1>Index post </h1>
+
+
+
     <table class="table table-striped">
       <thead>
         <tr>
+
           <th scope="col">id</th>
             <th scope="col">user</th>
           <th scope="col">user's email</th>
@@ -23,6 +27,7 @@
       @if($posts)
        @foreach($posts as $post)
         <tr>
+
           <td>{{$post->id}}</td>
             <td>{{$post->user->name}}</td>
           <td>{{$post->user->email}}</td>
@@ -38,6 +43,14 @@
         </tr>
        @endforeach
         @endif
-
     </table>
+
+
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-5">
+            {{$posts->render()}}
+        </div>
+    </div>
+
+
 @stop

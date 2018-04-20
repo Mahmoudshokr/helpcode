@@ -25,6 +25,20 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/blogpost/{id}',['as'=>'blog.post','uses'=>'PostCommentsController@post']);
+
+Route::resource('/postbycat','CatController');
+
+Route::group(['middleware'=>'auth'],function (){
+
+    Route::get('/result',function (){
+
+        $posts=\App\Post::Where('title','like','%'.request('query').'%')->get();
+        return view('user.results',compact('posts'));
+    });
+
+});
+
 
 Route::group(['middleware'=>'admin'],function (){
 
@@ -32,7 +46,9 @@ Route::group(['middleware'=>'admin'],function (){
         return view('admin/index');
     });
 
-    Route::get('/blogpost/{id}',['as'=>'blog.post','uses'=>'PostCommentsController@post']);
+
+
+
     Route::resource('/admincomments','PostCommentsController');
     Route::resource('/admincommentreplies','CommentRepliesController');
 
@@ -42,6 +58,14 @@ Route::group(['middleware'=>'admin'],function (){
     Route::resource('/admincategories','AdminCategoriesController');
     Route::resource('/adminmedia','AdminMediaController');
 
+    Route::delete('/deletebycheck','AdminMediaController@deletebycheck');
+
+    Route::resource('/tag','TagController');
+
+
 });
+
+Route::get('/{provider}/auth',['uses'=>'SocialController@auth','as'=>'social.auth']);
+Route::get('/{provider}/redirect',['uses'=>'SocialController@auth_callback','as'=>'social.callback']);
 
 

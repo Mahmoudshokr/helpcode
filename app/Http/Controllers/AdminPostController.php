@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Requests\Posts;
 use App\Photo;
 use App\Post;
+use App\Tag;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,7 @@ class AdminPostController extends Controller
     public function index()
     {
         //
-        $posts=Post::all();
+        $posts=Post::paginate(4);
         return view('admin.posts.index',compact('posts'));
     }
 
@@ -34,7 +35,8 @@ class AdminPostController extends Controller
     {
         //
         $categories=Category::pluck('name','id')->all();
-        return view('admin.posts.create',compact('categories'));
+        $tags=Tag::all();
+        return view('admin.posts.create',compact('categories','tags'));
     }
 
     /**
@@ -55,7 +57,7 @@ class AdminPostController extends Controller
             $photo=Photo::create(['path'=>$name,'size'=>$size]);
             $input['photo_id']=$photo->id;
         }
-        $user->post()->create($input);
+        $user->post()->create($input)->tags()->attach($request->tags);
 
         return redirect('adminpost');
 
@@ -126,4 +128,5 @@ class AdminPostController extends Controller
         Session::flash('deletepost_id','post number '.$id.' has been deleted');
         return redirect('adminpost');
     }
+
 }

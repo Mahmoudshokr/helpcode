@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+    @include('includes.tinymce')
     <h1>Edit post</h1>
     <div class="col-sm-3">
         <img height="150" src="http://localhost/helpcode/public/images/{{$posts->photo ? $posts->photo->path : 'default.jpg'}}" alt="">

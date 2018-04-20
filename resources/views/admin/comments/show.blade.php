@@ -22,6 +22,7 @@
                     <td>{{$comment->post->title}}</td>
                     <td>{{$comment->user}}</td>
                     <td>{{$comment->email}}</td>
+                    <td><a href="{{route('admincommentreplies.show',$comment->id)}}">view replies</a></td>
                     <td><a href="{{route('blog.post',$comment->post->id)}}">view post</a></td>
                     <td>
                         {!! Form::open(['method'=>'DELETE','action'=>['PostCommentsController@destroy',$comment->id]]) !!}

@@ -23,13 +23,19 @@
     <hr>
 
     <!-- Preview Image -->
-    <img class="img-responsive" src="http://localhost/helpcode/public/images/{{$post->photo->path}}" alt="">
+    <img class="img-responsive" src="http://localhost/helpcode/public/images/{{$post->photo? $post->photo->path : 'default.jpg'}}" alt="">
 
     <hr>
 
     <!-- Post Content -->
 
-    <p>{{$post->body}}</p>
+    <p>{!! $post->body !!}</p>
+
+    <div class="socials text-center">
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <div class="addthis_inline_share_toolbox_8qa6"></div>
+    </div>
+
 
     <hr>
 
@@ -106,7 +112,7 @@
 
 
 
-
+                          @if($reply->active == 1)
                             <!-- Nested Comment -->
                                 <div id="nested-comment" class=" media">
                                     <a class="pull-left" href="#">
@@ -121,6 +127,7 @@
                                     <!-- End Nested Comment -->
 
                                 </div>
+                            @endif
                         @endforeach
                                     <div class="comment-reply-container">
 
@@ -199,6 +206,7 @@
 
 
 @section('scripts')
+
 
     <script>
 

@@ -35,7 +35,7 @@
                             {!! Form::submit('Dis-Approve',['class'=>'btn btn-info']) !!}
                             {!! Form::close() !!}
                         @else
-                            {!! Form::model($reply,['method'=>'PUT','action'=>['CommentepliesController@update',$reply->id]]) !!}
+                            {!! Form::model($reply,['method'=>'PUT','action'=>['CommentRepliesController@update',$reply->id]]) !!}
                             {!! Form::token() !!}
                             <input type="hidden" name="active" value="1">
                             {!! Form::submit('Approve',['class'=>'btn btn-success']) !!}

@@ -19,6 +19,8 @@
     <!-- jQuery -->
     <script src="{{asset('js/libs.js')}}"></script>
 
+    @yield('script')
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -129,7 +131,7 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="{{'admin'}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="{{'/helpcode/public/admin'}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
 
                     <li>
@@ -159,6 +161,10 @@
                             </li>
 
                             <li>
+                                <a href="{{route('tag.create')}}">Create Tag</a>
+                            </li>
+
+                            <li>
                                 <a href="{{route('admincomments.index')}}">All Comments</a>
                             </li>
                             <li>
@@ -180,6 +186,7 @@
                             <li>
                                 <a href="{{route('admincategories.create')}}">Create Category</a>
                             </li>
+
 
                         </ul>
                         <!-- /.nav-second-level -->

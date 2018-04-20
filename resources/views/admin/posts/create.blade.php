@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+    @include('includes.tinymce')
     <h1>Create post</h1>
    <div class="row">
 
@@ -13,10 +14,16 @@
         {!! Form::text('title',null,['class'=>'form-control','placeholder'=>'']) !!}
 
             {!! Form::label('category_id','Category:'); !!}
-            {!! Form::select('category_id',[''=>'choose option']+ $categories,null,['class'=>'form-control','placeholder'=>'']) !!}
+            {!! Form::select('category_id',[''=>'choose option']+ $categories,null,['class'=>'form-control','placeholder'=>'']) !!}<br>
 
-            {!! Form::label('photo_id','Photo:'); !!}
-            {!! Form::file('photo_id',null,['class'=>'form-control','placeholder'=>'']) !!}
+            {!! Form::label('tag_id','Select tag:'); !!}<br>
+            @foreach($tags as $tag)
+            <label><input type="checkbox" name="tags[]" value="{{$tag->id}}"> {{$tag->name}}</label><br>
+
+            @endforeach
+
+            {!! Form::label('photo_id','Main photo:'); !!}
+            {!! Form::file('photo_id',null,['class'=>'form-control','placeholder'=>'']) !!}<br>
 
             {!! Form::label('body','Description:') !!}
         {!! Form::textarea('body',null,['class'=>'form-control','placeholder'=>'','rows'=>6]) !!}<br>
